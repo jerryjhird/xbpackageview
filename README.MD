@@ -2,7 +2,7 @@
 
 ## allows you to pull metadata from stfs xbox360 packages this includes:
 
-PACKAGE TYPES:
+### PACKAGE TYPES:
  
  LIVE
 
@@ -10,7 +10,7 @@ PACKAGE TYPES:
  
  PIRS
 
-CONTENT TYPES:
+### CONTENT TYPES:
 
  SAVE GAME
 
@@ -19,7 +19,7 @@ CONTENT TYPES:
  PROFILE
 
  ARACADE GAME
- 
+
  TITLE UPDATE
 
 

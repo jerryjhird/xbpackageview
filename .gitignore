@@ -2,5 +2,6 @@ dist/
 
 # i used this for testing packages allthough i do not want to share paid software publicly
 examples/
+
 todo
 *perf*
