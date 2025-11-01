@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <wchar.h>
 #include "magic.h"
+#include <string.h>
 
 uint32_t read32be_file(FILE *f, long offset) {
     uint8_t buf[4];
@@ -10,21 +11,32 @@ uint32_t read32be_file(FILE *f, long offset) {
     return (buf[0] << 24) | (buf[1] << 16) | (buf[2] << 8) | buf[3];
 }
 
-void read_utf16be_file(FILE *f, long offset, size_t max_chars, wchar_t *out) {
-    for (size_t i = 0; i < max_chars; i++) {
-        uint8_t b[2];
-        if (fseek(f, offset + i * 2, SEEK_SET) != 0 || fread(b, 1, 2, f) != 2) {
-            out[i] = L'\0';
-            return;
-        }
-        uint16_t val = (b[0] << 8) | b[1];
-        if (val == 0x0000) {
-            out[i] = L'\0';
-            return;
-        }
-        out[i] = val;
+void read_utf16be_file(FILE *f, long offset, size_t max_chars, wchar_t *out, uint8_t *buf) {
+    if (max_chars == 0) return;
+
+    size_t nbytes = max_chars * 2;
+
+    if (fseek(f, offset, SEEK_SET) != 0) {
+        out[0] = L'\0';
+        return;
     }
-    out[max_chars - 1] = L'\0';
+
+    size_t nread = fread(buf, 1, nbytes, f);
+    if (nread == 0) {
+        out[0] = L'\0';
+        return;
+    }
+
+    size_t num_chars = nread / 2;
+    size_t num_to_convert = (num_chars < max_chars - 1) ? num_chars : max_chars - 1;
+    size_t i = 0;
+
+    for (; i < num_to_convert; ++i) {
+        wchar_t c = (buf[i * 2] << 8) | buf[i * 2 + 1];
+        out[i] = c;
+        if (c == 0) break;
+    }
+    out[i] = L'\0';
 }
 
 const char* package_type(uint32_t type) {

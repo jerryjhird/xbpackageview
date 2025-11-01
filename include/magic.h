@@ -55,10 +55,10 @@ extern bool fancymode;
 
 // helpers
 
-void read_utf16be_file(FILE *f, long offset, size_t max_chars, wchar_t *out); /// read UTF-16BE files at offset
+void read_utf16be_file(FILE *f, long offset, size_t max_chars, wchar_t *out, uint8_t *buf);
 uint32_t read32be_file(FILE *f, long offset); // read 32-bit big-endian interger from file at offset
 
-/// get specific package values
+// get specific package values
 const char* package_type(uint32_t type);
 const char* content_type(uint32_t type);
 
