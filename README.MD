@@ -41,8 +41,4 @@ package description [game or dlc's description]
 
 publisher name
 
-## example
-
-i tested a packaged xbox live indie game using this tool:
-
-![Image](https://media.discordapp.net/attachments/1433603430739480718/1434174815954272306/rgxrYtT.png?ex=69075ee1&is=69060d61&hm=7fd33c2081a03948cef0d469933a57731c26e8b3a3b062565c2d07d69a7824fe&=&format=png&quality=lossless)
+### this was created for x86-64 gnu/linux command lines
