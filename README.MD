@@ -1,6 +1,6 @@
 # xbpackageview
 
-## allows you to pull metadata from stfs xbox360 packages this includes:
+## allows you to pull metadata from stfs xbox360 packages, package types include:
 
 ### PACKAGE TYPES:
  
